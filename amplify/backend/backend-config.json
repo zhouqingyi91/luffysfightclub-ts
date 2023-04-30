@@ -1,0 +1,43 @@
+{
+  "api": {
+    "fetchAlbumPhotosApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "fetchAlbumPhotosFuncion"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "fetchAlbumPhotosFuncion": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_fetchAlbumPhotosFuncion_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchAlbumPhotosFuncion"
+        }
+      ]
+    },
+    "AMPLIFY_function_fetchAlbumPhotosFuncion_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchAlbumPhotosFuncion"
+        }
+      ]
+    }
+  }
+}
