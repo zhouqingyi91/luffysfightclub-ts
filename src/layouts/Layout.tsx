@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 const Layout = () => {
   return (
     <article className="m-5 md:m-20">
-      <header className="z-[999] sticky top-0 bg-default-bg md:fixed">
+      <header className="z-[999] sticky top-0 bg-default-bg md:static">
         <NavBar />
       </header>
 
