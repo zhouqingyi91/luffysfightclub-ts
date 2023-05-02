@@ -1,5 +1,5 @@
 import { useGalleryCollection } from '../features/galleryCollection';
-import { streetAlbum } from '../services/s3/constants';
+import { streetAlbum } from '../assets/s3Constants';
 
 const StreetPage = () => {
   const portraitGallery = useGalleryCollection(streetAlbum);

@@ -13,7 +13,7 @@ const Layout = () => {
       </main>
 
       <footer className="md:ml-64">
-        footer
+
       </footer>
     </article>
   );

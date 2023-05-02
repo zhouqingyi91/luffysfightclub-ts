@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppSelector } from '../../../hooks/useRedux';
-import { bucketPathPrefix } from '../../../services/s3/constants';
+import { bucketPathPrefix } from '../../../assets/s3Constants';
 import { selectGalleryImageData } from '../store/galleryDataSlice';
 import SlideshowModal from './SlideshowModal';
 import Thumbnail from './Thumbnail';
 
-const Thumbnails = () => {
+const WebpageThumbnails = () => {
   const imgData = useAppSelector(selectGalleryImageData)
   const [openModal, setOpenModal] = useState(false);
   const [slideIndex, setSlideIndex] = useState(-1);
 
-  const openModalSlideshow = (idx: number) => {
+  const openModalSlideshow = useCallback((idx: number) => {
     setSlideIndex(idx);
     setOpenModal(true);
-  }
-  const closeModal = () => {
+  }, [])
+  const closeModal = useCallback(() => {
     setOpenModal(false);
-  }
+  }, [])
 
   const prevSlideHandler = () => {
     const newSlideIndex = slideIndex === 0 ? imgData.length - 1 : slideIndex - 1;
@@ -29,7 +29,7 @@ const Thumbnails = () => {
   }
 
   return (
-    <section className='hidden md:block'>
+    <section>
       <SlideshowModal
         nextSlide={nextSlideHandler}
         prevSlide={prevSlideHandler}
@@ -37,13 +37,14 @@ const Thumbnails = () => {
         slideIndex={slideIndex}
         closeModal={closeModal}
       />
-      <section className=' md:grid md:gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 5xl:grid-cols-7 6xl:grid-cols-8 7xl:grid-cols-9 8xl:grid-cols-10 9xl:grid-cols-11 10xl:grid-cols-12 11xl:grid-cols-13 12xl:grid-cols-16 13xl:grid-cols-20'>
+      <section className='grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 5xl:grid-cols-7 6xl:grid-cols-8 7xl:grid-cols-9 8xl:grid-cols-10 9xl:grid-cols-11 10xl:grid-cols-12 11xl:grid-cols-13 12xl:grid-cols-16 13xl:grid-cols-20'>
         {imgData?.map(({ imgName }, idx) => {
           return (
             <Thumbnail
-              openModalSlideshow={() => openModalSlideshow(idx)}
+              openModalSlideshow={openModalSlideshow}
               key={imgName}
               imgUrl={bucketPathPrefix + imgName}
+              slideIndex={idx}
             />
           )
         })}
@@ -52,4 +53,4 @@ const Thumbnails = () => {
   );
 };
 
-export default Thumbnails;
+export default WebpageThumbnails;

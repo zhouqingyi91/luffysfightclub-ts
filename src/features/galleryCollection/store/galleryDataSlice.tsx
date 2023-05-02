@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../../store'
 
-export type ImgDataType = { imgName: string }[];
+export type ImgDataType = { imgName: string };
 
 // Define a type for the slice state
 interface GalleryImageDataState {
-  imgData: ImgDataType
+  imgData: ImgDataType[]
 }
 
 // Define the initial state using that type
@@ -19,7 +19,7 @@ export const galleryDataSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setGalleryImgData(state, action: PayloadAction<ImgDataType>) {
+    setGalleryImgData(state, action: PayloadAction<ImgDataType[]>) {
       state.imgData = action.payload
     },
   },

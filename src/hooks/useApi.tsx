@@ -57,8 +57,6 @@ export type ApiInfoType = {
   params: { readonly [key: string]: any; }
 }
 const useApi = <T,>({ api, path, params }: ApiInfoType, initData: T): State<T> => {
-  console.log("useApi render");
-
   const [state, dispatch] = useReducer<React.Reducer<State<T>, Action<T>>>(dataFetchReducer, {
     data: initData,
     isLoading: false,
@@ -66,7 +64,6 @@ const useApi = <T,>({ api, path, params }: ApiInfoType, initData: T): State<T> =
   })
 
   useEffect(() => {
-    console.log("useApi useEffect");
     let didCancel = false;
     const fetchData = async () => {
       dispatch({ type: REDUCER_ACTION_TYPE.PENDING })
@@ -74,8 +71,6 @@ const useApi = <T,>({ api, path, params }: ApiInfoType, initData: T): State<T> =
         const param = { body: params }
         const result: T = await API.post(api, path, param);
         if (!didCancel) {
-          console.log("setting data");
-
           dispatch({
             type: REDUCER_ACTION_TYPE.SUCCESS,
             payload: result
@@ -83,8 +78,6 @@ const useApi = <T,>({ api, path, params }: ApiInfoType, initData: T): State<T> =
         }
 
       } catch (err) {
-        console.log("haha");
-
         if (!didCancel) {
           dispatch({ type: REDUCER_ACTION_TYPE.FAILURE })
         }
@@ -92,13 +85,10 @@ const useApi = <T,>({ api, path, params }: ApiInfoType, initData: T): State<T> =
     }
 
     if (isEmpty(initData)) {
-      console.log("fetching data");
       fetchData();
     }
 
-
     return () => {
-      console.log("useApi useEffect return");
       didCancel = true
     }
   }, [])

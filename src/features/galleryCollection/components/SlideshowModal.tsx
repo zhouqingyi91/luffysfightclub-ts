@@ -1,5 +1,6 @@
+import React, { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useRedux';
-import { bucketPathPrefix } from '../../../services/s3/constants';
+import { bucketPathPrefix } from '../../../assets/s3Constants';
 import { selectGalleryImageData } from '../store/galleryDataSlice';
 
 type PropsType = {
@@ -10,9 +11,25 @@ type PropsType = {
   prevSlide: () => void
 }
 const SlideshowModal = ({ openModal, slideIndex, closeModal, nextSlide, prevSlide }: PropsType) => {
-
   const imgData = useAppSelector(selectGalleryImageData)
   const imgUrl = bucketPathPrefix + (slideIndex >= 0 ? imgData[slideIndex]?.imgName : '');
+
+  useEffect(() => {
+    const handleEscAndArrow = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    }
+    document.addEventListener('keydown', handleEscAndArrow);
+    return () => {
+      document.removeEventListener('keydown', handleEscAndArrow);
+    }
+  }, [slideIndex]);
+
 
   return openModal ? (
     <section className='z-10 flex items-center justify-center bg-default-bg fixed top-0 bottom-0 right-20 left-[336px] '>

@@ -1,13 +1,22 @@
+import { CSSProperties } from "react";
 import BeatLoader from "react-spinners/BeatLoader"
 
 type PropsType = {
-  isLoading?: boolean
+  isLoading: boolean
 }
-const LoadingIndicator = ({ isLoading = true }: PropsType) => {
+const LoadingIndicator = ({ isLoading }: PropsType) => {
+  const cssOverride: CSSProperties = {
+    paddingTop: "2.5rem",
+    textAlign: "center",
+  }
   return (
-    <div className={"text-center"}>
-      <BeatLoader color={"#ccc"} loading={isLoading} size={"3vw"} margin={"1.5vw"} />
-    </div>
+    <BeatLoader
+      cssOverride={cssOverride}
+      color={"#ccc"}
+      loading={isLoading}
+      size={"2rem"}
+      margin={"1.5rem"}
+    />
   );
 };
 

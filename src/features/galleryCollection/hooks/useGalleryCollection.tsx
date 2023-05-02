@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import LoadingIndicator from '../../../components/UI/LoadingIndicator';
 import useApi from '../../../hooks/useApi';
 import { useAppDispatch } from '../../../hooks/useRedux';
@@ -8,11 +8,11 @@ import GalleryCollection from '../components/GalleryCollection';
 import { ImgDataType, setGalleryImgData } from '../store/galleryDataSlice';
 
 const galleryImgData: {
-  [index: string]: ImgDataType
+  [index: string]: ImgDataType[]
 } = {}
 const useGalleryCollection = (album: string) => {
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useApi<ImgDataType>(fetchAlbumPhotos(album), galleryImgData[album])
+  const { data, isLoading } = useApi<ImgDataType[]>(fetchAlbumPhotos(album), galleryImgData[album])
   if (isEmpty(galleryImgData[album])) {
     galleryImgData[album] = data;
   }
@@ -22,8 +22,6 @@ const useGalleryCollection = (album: string) => {
   }, [])
 
   useEffect(() => {
-    console.log("dispatch imgData");
-
     dispatch(setGalleryImgData(data))
   }, [data]);
 
