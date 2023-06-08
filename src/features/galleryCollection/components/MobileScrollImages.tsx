@@ -8,7 +8,7 @@ const MobileScrollImages = () => {
   return (
     <section className='space-y-5'>
       {imgData?.map(({ imgName }) => {
-        return <img key={imgName} src={bucketPathPrefix + imgName} alt="luffysfightclub" />
+        return <img loading="lazy" key={imgName} src={bucketPathPrefix + imgName} alt="luffysfightclub" />
       })}
     </section>
   );

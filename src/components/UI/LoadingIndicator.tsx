@@ -1,22 +1,20 @@
 import { CSSProperties } from "react";
-import BeatLoader from "react-spinners/BeatLoader"
+import BarLoader from "react-spinners/BarLoader";
 
-type PropsType = {
-  isLoading: boolean
-}
-const LoadingIndicator = ({ isLoading }: PropsType) => {
+const LoadingIndicator = () => {
   const cssOverride: CSSProperties = {
-    paddingTop: "2.5rem",
-    textAlign: "center",
+    margin: "0 auto",
   }
   return (
-    <BeatLoader
-      cssOverride={cssOverride}
-      color={"#ccc"}
-      loading={isLoading}
-      size={"2rem"}
-      margin={"1.5rem"}
-    />
+    <div className=" py-20">
+      <BarLoader
+        cssOverride={cssOverride}
+        color={"#ccc"}
+        width={"80%"}
+        height={"0.4rem"}
+      />
+    </div>
+
   );
 };
 

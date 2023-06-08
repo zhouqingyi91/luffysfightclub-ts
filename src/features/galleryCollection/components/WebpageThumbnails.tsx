@@ -14,9 +14,9 @@ const WebpageThumbnails = () => {
     setSlideIndex(idx);
     setOpenModal(true);
   }, [])
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setOpenModal(false);
-  }, [])
+  }
 
   const prevSlideHandler = () => {
     const newSlideIndex = slideIndex === 0 ? imgData.length - 1 : slideIndex - 1;
@@ -30,13 +30,12 @@ const WebpageThumbnails = () => {
 
   return (
     <section>
-      <SlideshowModal
+      {openModal && <SlideshowModal
         nextSlide={nextSlideHandler}
         prevSlide={prevSlideHandler}
-        openModal={openModal}
         slideIndex={slideIndex}
         closeModal={closeModal}
-      />
+      />}
       <section className='grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 5xl:grid-cols-7 6xl:grid-cols-8 7xl:grid-cols-9 8xl:grid-cols-10 9xl:grid-cols-11 10xl:grid-cols-12 11xl:grid-cols-13 12xl:grid-cols-16 13xl:grid-cols-20'>
         {imgData?.map(({ imgName }, idx) => {
           return (

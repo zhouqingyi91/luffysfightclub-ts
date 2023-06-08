@@ -27,7 +27,7 @@ const useGalleryCollection = (album: string) => {
 
   return (
     <article>
-      <LoadingIndicator isLoading={isLoading} />
+      {isLoading && <LoadingIndicator />}
       <GalleryCollection />
     </article>
   );

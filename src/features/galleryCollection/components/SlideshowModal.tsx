@@ -4,13 +4,12 @@ import { bucketPathPrefix } from '../../../assets/s3Constants';
 import { selectGalleryImageData } from '../store/galleryDataSlice';
 
 type PropsType = {
-  openModal: boolean,
   slideIndex: number,
   closeModal: () => void,
   nextSlide: () => void,
   prevSlide: () => void
 }
-const SlideshowModal = ({ openModal, slideIndex, closeModal, nextSlide, prevSlide }: PropsType) => {
+const SlideshowModal = ({ slideIndex, closeModal, nextSlide, prevSlide }: PropsType) => {
   const imgData = useAppSelector(selectGalleryImageData)
   const imgUrl = bucketPathPrefix + (slideIndex >= 0 ? imgData[slideIndex]?.imgName : '');
 
@@ -31,7 +30,7 @@ const SlideshowModal = ({ openModal, slideIndex, closeModal, nextSlide, prevSlid
   }, [slideIndex]);
 
 
-  return openModal ? (
+  return (
     <section className='z-10 flex items-center justify-center bg-default-bg fixed top-0 bottom-0 right-20 left-[336px] '>
       <button onClick={closeModal} className='z-10 text-5xl hover:text-white absolute top-5 right-5'>&times;</button>
       <button onClick={prevSlide} className='z-10 absolute left-5 top-1/2 -translate-y-1/2 text-3xl hover:text-white'>&#10094;</button>
@@ -42,7 +41,7 @@ const SlideshowModal = ({ openModal, slideIndex, closeModal, nextSlide, prevSlid
 
       <img className='w-4/5 h-4/5 object-contain' src={imgUrl} alt="luffysfightclub" />
     </section>
-  ) : null;
+  )
 };
 
 export default SlideshowModal;

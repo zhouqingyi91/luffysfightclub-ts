@@ -10,4 +10,5 @@ export const bucketPathPrefix =
 
 export const streetAlbum = 'street/';
 export const portraitAlbum = 'portrait/';
+export const nightAlbum = 'night/';
 export const homepageAlbum = 'homepage/';

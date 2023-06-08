@@ -18,14 +18,14 @@ const usePageCollection = (album: string) => {
     pageImgData[album] = data?.map(({ imgName }) => {
       return {
         imgName,
-        caption: imgName.substring(imgName.indexOf('/') + 1, imgName.lastIndexOf('.'))
+        caption: imgName.substring(imgName.lastIndexOf('/') + 1, imgName.lastIndexOf('.'))
       }
     })
   }
 
   return (
     <article>
-      <LoadingIndicator isLoading={isLoading} />
+      {isLoading && <LoadingIndicator />}
       <PageCollection imgs={pageImgData[album]} />
     </article>
   );

@@ -10,6 +10,9 @@ const Menu = () => {
       <li>
         <NavLink style={navLinkStyle} to={'/portrait'} >portrait</NavLink>
       </li>
+      <li>
+        <NavLink style={navLinkStyle} to={'/night'} >night</NavLink>
+      </li>
     </ul>
   );
 };
