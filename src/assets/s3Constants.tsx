@@ -1,5 +1,5 @@
-export const bucketName = 'luffysfightclub';
-export const region = 'us-west-2';
+export const bucketName = 'luffysfightclub-hongkong';
+export const region = 'ap-east-1';
 
 export const bucketPathPrefix =
   'https://' +
