@@ -15,7 +15,7 @@
       "function": {
         "fetchAlbumPhotosFuncion": {
           "deploymentBucketName": "amplify-luffysfightclubts-dev-124338-deployment",
-          "s3Key": "amplify-builds/fetchAlbumPhotosFuncion-4e5a664d4135476b5575-build.zip"
+          "s3Key": "amplify-builds/fetchAlbumPhotosFuncion-32334172323043574868-build.zip"
         }
       },
       "api": {
